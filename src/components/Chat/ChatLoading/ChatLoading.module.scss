@@ -1,0 +1,43 @@
+.chatLoading {
+  opacity: 0;
+  width: 100%;
+  display: flex;
+  padding: 0 21%;
+  align-items: center;
+  transform: scale(0);
+  justify-content: flex-start;
+  animation: hidden 0.1s linear;
+
+  &.shown {
+    opacity: 1;
+    padding: 20px 21%;
+    min-height: 50px;
+    transform: scale(1);
+    background: var(--app-white);
+    animation: shown 0.2s linear;
+
+  }
+}
+
+@keyframes shown {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes hidden {
+  0% {
+    position: absolute;
+    opacity: 0.9;
+  }
+  50% {
+    position: absolute;
+    opacity: 0.3;
+  }
+  80% {
+    opacity: 0;
+  }
+}

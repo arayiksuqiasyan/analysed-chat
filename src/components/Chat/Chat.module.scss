@@ -1,0 +1,56 @@
+.chat {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+
+  form {
+    width: 100%;
+    height: 10vh;
+    display: flex;
+    background: white;
+    align-items: center;
+
+    .chatInputWrapper {
+      width: 100%;
+      display: flex;
+      padding: 20px 0;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .chatInputController {
+      width: 60%;
+      display: flex;
+      position: absolute;
+      justify-content: flex-start;
+
+      .chatInput {
+        padding: 0 87px 0 8px;
+      }
+
+      button {
+        top: 5px;
+        right: 16px;
+        border: none;
+        height: 32px;
+        outline: none;
+        display: flex;
+        cursor: pointer;
+        padding: 4px 16px;
+        border-radius: 4px;
+        position: absolute;
+        align-items: center;
+        justify-content: center;
+        background: var(--app-primary);
+
+        span {
+          color: var(--app-white);
+        }
+      }
+    }
+  }
+
+}
