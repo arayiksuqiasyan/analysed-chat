@@ -1,0 +1,51 @@
+.header {
+  top: 0;
+  left: 0;
+  z-index: 1;
+  display: flex;
+  position: sticky;
+  padding: 18px 60px;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--app-grey-1);
+
+  .left {
+    gap: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    > span {
+      font-size: 20px;
+      font-weight: 400;
+      color: var(--app-blue-1);
+    }
+
+    .cycle {
+      width: 44px;
+      height: 44px;
+      display: flex;
+      border-radius: 50%;
+      align-items: center;
+      justify-content:  center;
+      border: 1px solid var(--app-primary);
+      span {
+        font-weight: 400;
+        font-size: 16px;
+        color: var(--app-blue-1);
+      }
+    }
+  }
+
+  .right {
+    figure {
+      width: 32px;
+      height: 32px;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+    }
+  }
+}

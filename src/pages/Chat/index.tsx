@@ -1,13 +1,15 @@
-import React, {useCallback, useEffect, useMemo} from "react";
+import React, {useCallback, useEffect, useMemo, useState} from "react";
 import classes from './Chat.module.scss'
 import {v4 as uuid} from 'uuid';
 import {Controller, ControllerFieldState, ControllerRenderProps, useForm} from "react-hook-form";
 
 import {notify} from "../../store/reducers/root-reducer";
+import AppButton from "../../components/AppButton/AppButton";
 import ChatInput from "./ChatInput/ChatInput";
 import ChatMessages from "./ChatMessages/ChatMessages";
 import {useAppDispatch, useAppSelector} from "../../hooks/Redux";
-import {getAllMessages, onSaveAiAnswer, sendMessage} from "../../store/actions/chat-action";
+import {getAllMessages, onSaveAiAnswer, putMessage, sendMessage} from "../../store/actions/chat-action";
+import {Imessage} from "../../store/reducers/chat-reducer";
 
 interface IFormValues {
     chatInput: string
@@ -20,13 +22,15 @@ type IFormRenderProps = {
 
 
 const AppChat = () => {
+    const [editedMessage, setEditedMessage] = useState<null | Imessage>(null)
     const dispatch = useAppDispatch()
     const {isLoading} = useAppSelector((state) => state.chat)
 
     const {
         control,
         reset,
-        handleSubmit
+        handleSubmit,
+        setValue,
     } = useForm({
         mode: 'onSubmit',
         defaultValues: {
@@ -51,11 +55,23 @@ const AppChat = () => {
         />
     }, [isLoading])
 
+    const onEditMessage = (message: Imessage) => {
+        setValue('chatInput', message.content)
+        setEditedMessage(message)
+    }
+
     const onSubmit = (data: IFormValues) => {
-        const newMessage = {id: uuid(), role: 'user', content: data.chatInput}
-        dispatch(sendMessage(newMessage, reset))
-            .then((answer) => dispatch(onSaveAiAnswer(answer)))
-            .catch((message) => dispatch(notify({type: 'error', message})))
+        let newMessage;
+        if (editedMessage) {
+            newMessage = {...editedMessage, content: data.chatInput}
+            dispatch(putMessage(newMessage,reset))
+            setEditedMessage(null)
+        } else {
+            newMessage = {id: uuid(), role: 'user', content: data.chatInput}
+            dispatch(sendMessage(newMessage, reset))
+                .then((answer) => dispatch(onSaveAiAnswer(answer)))
+                .catch((message) => dispatch(notify({type: 'error', message})))
+        }
     }
 
     useEffect(() => {
@@ -64,7 +80,7 @@ const AppChat = () => {
 
     return (
         <div className={classes.chat}>
-            <ChatMessages/>
+            <ChatMessages onEdit={onEditMessage}/>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className={classes.chatInputWrapper}>
                     <div className={classes.chatInputController}>
@@ -74,9 +90,12 @@ const AppChat = () => {
                             control={control}
                             render={({field, fieldState}) => render({field, fieldState})}
                         />
-                        <button type={'submit'}>
-                            {isLoading ? <div className={'loader'}/> : <span>Next</span>}
-                        </button>
+                        <AppButton
+                            type={'submit'}
+                            variant={'primary'}
+                            disabled={isLoading}>
+                            <span>{editedMessage ? 'Edit' : 'Next'}</span>
+                        </AppButton>
                     </div>
                 </div>
             </form>

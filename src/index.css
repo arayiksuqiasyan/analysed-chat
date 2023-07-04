@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Roboto:wght@100;300;400;500;700;900&display=swap');
+@import './fonts/style.css';
 
 body {
     margin: 0;
@@ -10,14 +11,15 @@ body {
 }
 
 :root {
-    --app-primary: #68468E;
-    --app-error: #B71C1C;
     --app-white: #fff;
+    --app-error: #B71C1C;
     --app-grey-1: #C7C7C7;
     --app-grey-2: #D1D3D4;
     --app-grey-3: #f1f1f1;
     --app-grey-4: #737373;
+    --app-grey-5: #808080;
     --app-blue-1: #283A52;
+    --app-primary: #684d86;
     --animate-shown-opacity: animate-shown-opacity;
 }
 

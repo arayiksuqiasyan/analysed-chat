@@ -1,5 +1,13 @@
 import {v4 as uuid} from "uuid";
 
+export const MENU_OPTIONS = [
+    {id:1,name:'Instruction',iconName:'Instruction',path:'/instruction'},
+    {id:2,name:'My info',iconName:'info',path:'/info'},
+    {id:3,name:'Chat',iconName:'chat',path:'/chat'},
+    {id:4,name:'My career paths',iconName:'career',path:'/career'},
+    {id:5,name:'Feedback',iconName:'feedback',path:'/feedback'},
+]
+
 export const scrollToBottom = (ref) => {
     if (ref?.current) {
         ref.current.scrollTo({

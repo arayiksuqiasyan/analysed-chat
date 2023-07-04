@@ -2,7 +2,7 @@ import axios from "axios";
 import {AppDispatch} from "../store";
 import {notify} from "../reducers/root-reducer";
 import {generateAiMessage} from "../../constants";
-import {setIsLoading, setMessages} from "../reducers/chat-reducer";
+import {editMessage, Imessage, setIsLoading, setMessages} from "../reducers/chat-reducer";
 
 type INewMessage = { id: string | number, role: string, content: string }
 
@@ -51,4 +51,14 @@ export const sendMessage = (newMessage: INewMessage, reset: () => void) => {
     }
 }
 
-
+export const putMessage = (el: Imessage, reset: () => void) => {
+    return async (dispatch: AppDispatch) => {
+        try {
+            const response = await axios.put(`/messages/${el.id}`, el)
+            reset()
+            dispatch(editMessage(response.data))
+        } catch (e: any) {
+            dispatch(notify({type: 'error', message: e.message}))
+        }
+    }
+}

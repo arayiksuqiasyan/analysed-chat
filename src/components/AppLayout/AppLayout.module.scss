@@ -1,0 +1,17 @@
+.layout {
+  display: flex;
+  min-width: 100%;
+  overflow: hidden;
+  min-height: 100vh;
+
+  .sidebar {
+    width: 16%;
+    border-right: 1px solid var(--app-grey-1);
+  }
+
+  .outlet {
+    width: 84%;
+    display: flex;
+    flex-direction: column;
+  }
+}

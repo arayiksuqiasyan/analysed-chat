@@ -1,0 +1,73 @@
+.sideBar {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  .profLab {
+    gap: 10px;
+    display: flex;
+    align-items: center;
+    padding: 33px 0 33px 20px;
+    justify-content: flex-start;
+    border-bottom: 1px solid var(--app-grey-1);
+  }
+
+  .menu {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    .menuItem {
+      gap: 8px;
+      display: flex;
+      cursor: pointer;
+      font-weight: 400;
+      padding: 12px 22px;
+      align-items: center;
+      text-decoration: none;
+      color: var(--app-grey-5);
+      justify-content: flex-start;
+
+      .iconWrapper {
+        width: 28px;
+        height: 28px;
+        padding: 4px;
+        display: flex;
+        border-radius: 8px;
+        align-items: center;
+        justify-content: center;
+        transition: 0.2s all ease;
+
+        i {
+          font-size: 16px;
+          color: var(--app-grey-5);
+        }
+
+        .Instruction {
+          font-size: 17px;
+        }
+
+        .info {
+          font-size: 12px;
+        }
+
+        .chat {
+          font-size: 16px;
+        }
+      }
+
+      &.activeLink {
+        color: var(--app-primary);
+
+        .iconWrapper {
+          i {
+            color: var(--app-white);
+          }
+
+          background: var(--app-primary);
+        }
+      }
+
+    }
+  }
+}

@@ -1,9 +1,9 @@
 import {createSlice} from '@reduxjs/toolkit'
 
-type message = { id: number | string, role: 'user' | 'bot', content: string }
+export type Imessage = { id: number | string, role: 'user' | 'bot', content: string }
 
 interface InitialState {
-    messages: message[] | []
+    messages: Imessage[] | []
     isLoading: boolean,
     errorMessage: string | null
 }
@@ -25,12 +25,19 @@ export const chatSlice = createSlice({
                 state.messages = [...state.messages, action.payload]
             }
         },
+        editMessage: (state, action) => {
+            const foundedIndex = state.messages.findIndex(el => el?.id === action.payload?.id)
+            if (foundedIndex > -1) {
+                const newMessages = [...state.messages]
+                newMessages[foundedIndex].content = action.payload?.content
+            }
+        },
         setIsLoading: (state, action) => {
             state.isLoading = action.payload
         },
     },
 })
 
-export const {setMessages, setIsLoading} = chatSlice.actions
+export const {setMessages, setIsLoading, editMessage} = chatSlice.actions
 
 export default chatSlice.reducer

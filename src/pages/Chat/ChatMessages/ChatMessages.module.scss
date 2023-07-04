@@ -1,6 +1,6 @@
 .messages {
   width: 100%;
-  height: 90vh;
+  height: 80vh;
   overflow-y: scroll;
   overflow-x: hidden;
 
@@ -8,9 +8,12 @@
     width: 100%;
     display: flex;
     padding: 20px 0;
+    cursor: default;
     min-height: 60px;
+    position: relative;
     align-items: center;
     justify-content: center;
+    transition: 0.2s all ease;
     background: var(--app-grey-3);
     animation: var(--animate-shown-opacity) 0.3s linear;
 
@@ -27,6 +30,24 @@
       text-align: justify;
       display: inline-block;
       color: var(--app-blue-1);
+    }
+
+
+    .editIconWrapper {
+      top: 30px;
+      right: 17%;
+      opacity: 0;
+      font-size: 16px;
+      cursor: pointer;
+      position: absolute;
+      color: var(--app-grey-5);
+      transition: 0.2s all ease;
+    }
+
+    &:hover {
+      .editIconWrapper {
+        opacity: 1;
+      }
     }
   }
 }

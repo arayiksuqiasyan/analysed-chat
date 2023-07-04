@@ -1,0 +1,72 @@
+.button {
+  --disable: rgba(11, 11, 12, 0.04);
+  --disableColor: rgba(138, 138, 138, 0.04);
+
+  --primary: #684d86;
+  --secondary: 'transparent';
+
+  outline: none;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 24px;
+  padding: 14px 22px;
+  border-radius: 12px;
+  align-items: center;
+  display: inline-flex;
+  box-sizing: border-box;
+  justify-content: center;
+  border: 2px solid transparent;
+  transition: 0.2s color ease, 0.2s border-color ease, 0.2s background-color ease;
+
+  &.primary {
+    background-color: var(--primary);
+  }
+
+  &.secondary {
+    color: var(--secondaryColor);
+    border-color: var(--secondary);
+    background-color: var(--secondary);
+
+    &:hover {
+      color: var(--secondaryHoverColor);
+      border-color: var(--secondaryHover);
+      background-color: var(--secondaryHover);
+
+    }
+
+    &:active {
+      color: var(--secondaryHoverColor);
+      border-color: var(--secondaryActive);
+      background-color: var(--secondaryActive);
+
+    }
+
+    &:focus:not(:active) {
+      color: var(--secondaryHoverColor);
+      border-color: var(--secondaryHoverColor);
+      background-color: var(--secondaryHover);
+    }
+  }
+
+  &.disabled {
+    cursor: not-allowed;
+    color: var(--disableColor);
+    border-color: transparent;
+    background-color: var(--disable);
+
+    &:hover {
+      color: var(--disableColor);
+      border-color: transparent;
+      background-color: var(--disable);
+    }
+
+    &:active {
+      color: var(--disableColor);
+      border-color: transparent;
+      background-color: var(--disable);
+    }
+
+  }
+
+
+}

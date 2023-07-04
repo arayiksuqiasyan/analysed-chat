@@ -2,12 +2,12 @@ import React from 'react';
 import 'react-toastify/dist/ReactToastify.css';
 import {ToastContainer} from "react-toastify";
 
-import AppChat from "./components/Chat";
+import AppRoutes from "./components/Routes";
 
 function App() {
     return (
         <div className="App">
-            <AppChat/>
+            <AppRoutes/>
             <ToastContainer
                 theme="dark"
                 autoClose={2000}
